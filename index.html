@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untuk Istriku Tercinta 💖</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 40px;
+            width: 100%;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 105, 180, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 70%, rgba(255, 215, 0, 0.05) 0%, transparent 50%);
+            z-index: -1;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .header h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4, #a18cd1, #fad0c4);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            letter-spacing: 1px;
+        }
+        
+        .header p {
+            font-size: 1.4rem;
+            color: #ffccd5;
+            font-style: italic;
+            margin-top: 10px;
+            opacity: 0;
+            animation: fadeIn 2s forwards 3s;
+        }
+        
+        .heart-main {
+            font-size: 5rem;
+            color: #ff4081;
+            margin: 30px 0;
+            animation: heartbeat 1.5s infinite, float 3s infinite ease-in-out;
+            text-shadow: 0 0 25px rgba(255, 64, 129, 0.8);
+            filter: drop-shadow(0 0 10px rgba(255, 64, 129, 0.5));
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        .message-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 35px;
+            margin: 30px 0;
+            border-left: 5px solid #ff4081;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            line-height: 1.9;
+            font-size: 1.25rem;
+            position: relative;
+            min-height: 400px;
+        }
+        
+        .message-box {
+            opacity: 0;
+            animation: fadeIn 1s forwards 0.5s;
+        }
+        
+        .message-box p {
+            margin-bottom: 25px;
+            color: #f0f0f0;
+            font-size: 1.3rem;
+            line-height: 1.8;
+        }
+        
+        .typing-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1.4em;
+            background-color: #ff4081;
+            margin-left: 2px;
+            animation: blink 1s infinite;
+            vertical-align: middle;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
+        .signature {
+            text-align: right;
+            margin-top: 50px;
+            padding-top: 25px;
+            border-top: 2px dashed rgba(255, 255, 255, 0.2);
+            opacity: 0;
+            animation: fadeIn 2s forwards 12s;
+        }
+        
+        .signature p {
+            color: #ffccd5;
+            font-size: 1.4rem;
+            font-style: italic;
+        }
+        
+        .signature .name {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: #fff;
+            font-weight: bold;
+            margin-top: 10px;
+            text-shadow: 0 0 15px rgba(255, 64, 129, 0.7);
+        }
+        
+        .date {
+            color: #aaa;
+            font-size: 1.1rem;
+            margin-top: 15px;
+        }
+        
+        /* Sticker Container */
+        .sticker-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .sticker {
+            position: absolute;
+            font-size: 3rem;
+            opacity: 0;
+            animation: stickerAppear 1s forwards, stickerFloat 6s infinite ease-in-out;
+            filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.3));
+        }
+        
+        @keyframes stickerAppear {
+            to { opacity: 0.9; }
+        }
+        
+        @keyframes stickerFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        
+        /* Floating Hearts Animation */
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .heart {
+            position: absolute;
+            color: #ff4081;
+            font-size: 24px;
+            opacity: 0;
+            animation: floatUp 20s infinite linear;
+        }
+        
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(0deg) scale(0.5);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg) scale(1);
+                opacity: 0;
+            }
+        }
+        
+        /* Typing Effect */
+        .typed-text {
+            display: inline;
+        }
+        
+        /* Instructions */
+        .instructions {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+            width: 100%;
+            opacity: 0;
+            animation: fadeIn 2s forwards 15s;
+        }
+        
+        .instructions h3 {
+            color: #ffccd5;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .instructions p {
+            color: #ddd;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        
+        .instructions .emoji {
+            font-size: 1.5rem;
+            margin: 0 5px;
+        }
+        
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .card {
+                padding: 25px;
+            }
+            
+            .header h1 {
+                font-size: 3rem;
+            }
+            
+            .message-container {
+                padding: 20px;
+                font-size: 1.1rem;
+                min-height: 300px;
+            }
+            
+            .heart-main {
+                font-size: 4rem;
+            }
+            
+            .sticker {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Hearts -->
+    <div class="floating-hearts" id="floatingHearts"></div>
+    
+    <!-- Sticker Container -->
+    <div class="sticker-container" id="stickerContainer"></div>
+    
+    <div class="container">
+        <div class="card">
+            <div class="header">
+                <h1 id="mainTitle">Untuk Sayangku Tercinta 💕</h1>
+                <p>Wanita yang membuat hidupku penuh warna 🌈</p>
+            </div>
+            
+            <div style="text-align: center;">
+                <div class="heart-main">
+                    <i class="fas fa-heart"></i>
+                </div>
+            </div>
+            
+            <div class="message-container">
+                <div class="message-box" id="messageBox">
+                    <!-- Pesan akan dimasukkan via JavaScript dengan efek ketik -->
+                </div>
+            </div>
+            
+            <div class="signature">
+                <p>Dengan cinta yang tak terhingga,</p>
+                <div class="name" id="signatureName">Suamimu yang selalu mencintaimu 💘</div>
+                <div class="date" id="currentDate"></div>
+            </div>
+        </div>
+        
+    
+    <script>
+        // Set tanggal saat ini
+        const now = new Date();
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('currentDate').textContent = now.toLocaleDateString('id-ID', options);
+        
+        // Daftar stiker emoji lucu
+        const cuteStickers = [
+            "💖", "💕", "💞", "💓", "💗", "💘", "💝", "💟",
+            "😍", "🥰", "😘", "😚", "🤗", "😙", "❤️", "🧡",
+            "💛", "💚", "💙", "💜", "🤎", "🖤", "🤍", "💋",
+            "🌸", "🌺", "🌷", "💐", "🎀", "🎁", "✨", "🌟",
+            "💫", "⭐", "🔥", "💥", "☀️", "🌹", "🥀", "🌼",
+            "💌", "🐣", "🐥", "🐤", "🦄", "🐬", "🐳", "🌈"
+        ];
+        
+        // Pesan romantis dengan emoji
+        const messages = [
+            { text: "Sayangku tersayang, 💖", delay: 500 },
+            { text: "\n\nSetiap hari bersamamu adalah anugerah terindah dalam hidupku. 😊 Kamu adalah alasan di balik setiap senyuman, setiap tawa, dan setiap momen bahagia yang kualami. 🌟", delay: 1000 },
+            { text: "\n\nTerima kasih telah menjadi pendamping hidup yang sabar, penyayang, dan pengertian. 🙏 Terima kasih atas setiap pengorbanan, setiap dukungan, dan setiap cinta yang tak pernah pudar yang selalu kau berikan. 💕", delay: 1000 },
+            { text: "\n\nKamu adalah jawaban dari semua doaku. 🤲 Kamu adalah mimpi yang menjadi nyata. ✨ Kamu adalah wanita yang membuatku percaya bahwa cinta sejati itu ada, dan aku bersyukur setiap hari karena Tuhan mempertemukan kita. 👫", delay: 1000 },
+            { text: "\n\nAku mencintaimu lebih dari kata-kata bisa ungkapkan. 💬 Cintaku padamu tumbuh lebih dalam dengan setiap detik yang kita lalui bersama. ⏳ Kamu dan hanya kamu, selamanya. 💍", delay: 1000 },
+            { text: "\n\nSelalu ingat bahwa kamu adalah wanita terhebat dalam hidupku, 🌺 sumber kebahagiaanku, 😊 dan alasan aku tersenyum setiap hari. ☀️", delay: 1000 },
+            { text: "\n\nAku berjanji akan selalu mencintaimu, menghargaimu, dan membuatmu merasa seperti wanita paling berharga di dunia. 👑", delay: 1000 }
+        ];
+        
+        // Efek ketik untuk judul
+        const title = "Untuk Sayangku Tercinta 💕";
+        const titleElement = document.getElementById('mainTitle');
+        titleElement.innerHTML = '';
+        
+        let titleIndex = 0;
+        function typeTitle() {
+            if (titleIndex < title.length) {
+                titleElement.innerHTML += title.charAt(titleIndex);
+                titleIndex++;
+                setTimeout(typeTitle, 100);
+            } else {
+                // Setelah judul selesai, mulai efek ketik pesan
+                setTimeout(startTypingMessage, 1000);
+            }
+        }
+        
+        // Efek ketik untuk pesan
+        function startTypingMessage() {
+            const messageBox = document.getElementById('messageBox');
+            messageBox.innerHTML = '<span class="typing-cursor"></span>';
+            
+            let messageIndex = 0;
+            let charIndex = 0;
+            let currentMessage = '';
+            
+            function typeMessage() {
+                if (messageIndex < messages.length) {
+                    if (charIndex < messages[messageIndex].text.length) {
+                        currentMessage += messages[messageIndex].text.charAt(charIndex);
+                        messageBox.innerHTML = currentMessage + '<span class="typing-cursor"></span>';
+                        charIndex++;
+                        setTimeout(typeMessage, 40); // Kecepatan ketik
+                    } else {
+                        charIndex = 0;
+                        messageIndex++;
+                        setTimeout(typeMessage, messages[messageIndex-1].delay);
+                    }
+                } else {
+                    // Setelah pesan selesai, hapus kursor
+                    setTimeout(() => {
+                        messageBox.innerHTML = currentMessage;
+                    }, 500);
+                }
+            }
+            
+            typeMessage();
+        }
+        
+        // Tambahkan stiker secara acak
+        function addRandomStickers() {
+            const container = document.getElementById('stickerContainer');
+            const stickerCount = 15;
+            
+            for (let i = 0; i < stickerCount; i++) {
+                const sticker = document.createElement('div');
+                sticker.className = 'sticker';
+                
+                // Pilih stiker acak
+                const randomSticker = cuteStickers[Math.floor(Math.random() * cuteStickers.length)];
+                sticker.innerHTML = randomSticker;
+                
+                // Posisi acak
+                const left = Math.random() * 85 + 5;
+                const top = Math.random() * 85 + 5;
+                sticker.style.left = `${left}%`;
+                sticker.style.top = `${top}%`;
+                
+                // Waktu animasi acak
+                const delay = Math.random() * 5;
+                sticker.style.animationDelay = `${delay}s`;
+                
+                // Ukuran acak
+                const size = Math.random() * 2 + 1.5;
+                sticker.style.fontSize = `${size}rem`;
+                
+                // Warna sedikit variasi
+                const colors = ['#ff4081', '#ff79b0', '#ff9a9e', '#fad0c4', '#a18cd1', '#ffcc00'];
+                sticker.style.color = colors[Math.floor(Math.random() * colors.length)];
+                
+                container.appendChild(sticker);
+            }
+        }
+        
+        // Hati mengambang di background
+        function createFloatingHearts() {
+            const container = document.getElementById('floatingHearts');
+            const heartCount = 25;
+            
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '<i class="fas fa-heart"></i>';
+                
+                // Warna hati acak
+                const colors = ['#ff4081', '#ff79b0', '#ff9a9e', '#fad0c4', '#a18cd1'];
+                heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+                
+                // Ukuran hati acak
+                const size = Math.random() * 30 + 15;
+                heart.style.fontSize = `${size}px`;
+                
+                // Posisi awal acak
+                heart.style.left = `${Math.random() * 100}%`;
+                
+                // Waktu animasi acak
+                const duration = Math.random() * 15 + 15;
+                const delay = Math.random() * 10;
+                heart.style.animation = `floatUp ${duration}s infinite linear`;
+                heart.style.animationDelay = `${delay}s`;
+                
+                container.appendChild(heart);
+            }
+        }
+        
+        // Efek klik untuk menambah stiker
+        document.addEventListener('click', function(e) {
+            // Buat stiker baru di posisi klik
+            const sticker = document.createElement('div');
+            sticker.className = 'sticker';
+            sticker.style.position = 'fixed';
+            
+            // Pilih stiker acak
+            const randomSticker = cuteStickers[Math.floor(Math.random() * cuteStickers.length)];
+            sticker.innerHTML = randomSticker;
+            
+            // Posisi klik
+            sticker.style.left = `${e.clientX - 25}px`;
+            sticker.style.top = `${e.clientY - 25}px`;
+            
+            // Warna acak
+            const colors = ['#ff4081', '#ff79b0', '#ff9a9e', '#fad0c4', '#a18cd1', '#ffcc00'];
+            sticker.style.color = colors[Math.floor(Math.random() * colors.length)];
+            
+            // Ukuran acak
+            const size = Math.random() * 2 + 2;
+            sticker.style.fontSize = `${size}rem`;
+            
+            // Animasi muncul
+            sticker.style.animation = 'stickerAppear 0.5s forwards, stickerFloat 4s infinite ease-in-out';
+            
+            document.body.appendChild(sticker);
+            
+            // Hapus stiker setelah beberapa saat
+            setTimeout(() => {
+                if (sticker.parentElement) {
+                    sticker.style.opacity = '0';
+                    sticker.style.transition = 'opacity 1s';
+                    setTimeout(() => {
+                        if (sticker.parentElement) {
+                            document.body.removeChild(sticker);
+                        }
+                    }, 1000);
+                }
+            }, 8000);
+        });
+        
+        // Efek ketik untuk signature
+        const signatureText = "Suamimu yang selalu mencintaimu 💘";
+        const signatureElement = document.getElementById('signatureName');
+        signatureElement.innerHTML = '';
+        
+        let sigIndex = 0;
+        function typeSignature() {
+            if (sigIndex < signatureText.length) {
+                signatureElement.innerHTML += signatureText.charAt(sigIndex);
+                sigIndex++;
+                setTimeout(typeSignature, 80);
+            }
+        }
+        
+        // Mulai semua animasi setelah halaman dimuat
+        window.onload = function() {
+            // Mulai efek ketik judul
+            setTimeout(typeTitle, 500);
+            
+            // Tambahkan stiker
+            setTimeout(addRandomStickers, 1000);
+            
+            // Tambahkan hati mengambang
+            createFloatingHearts();
+            
+            // Mulai efek ketik signature setelah pesan selesai
+            setTimeout(typeSignature, 14000);
+            
+            // Musik latar opsional (bisa diaktifkan jika ingin)
+            // const audio = new Audio('https://assets.mixkit.co/music/preview/mixkit-loving-you-117.mp3');
+            // audio.loop = true;
+            // audio.volume = 0.3;
+            // audio.play().catch(e => console.log("Autoplay diblokir"));
+        };
+        
+        // Efek mouse trail (opsional)
+        let trail = [];
+        document.addEventListener('mousemove', function(e) {
+            const dot = document.createElement('div');
+            dot.style.position = 'fixed';
+            dot.style.left = `${e.clientX - 5}px`;
+            dot.style.top = `${e.clientY - 5}px`;
+            dot.style.width = '10px';
+            dot.style.height = '10px';
+            dot.style.borderRadius = '50%';
+            dot.style.backgroundColor = '#ff4081';
+            dot.style.pointerEvents = 'none';
+            dot.style.zIndex = '9999';
+            dot.style.opacity = '0.7';
+            
+            document.body.appendChild(dot);
+            trail.push(dot);
+            
+            // Hapus dot setelah beberapa saat
+            setTimeout(() => {
+                if (dot.parentElement) {
+                    dot.style.opacity = '0';
+                    dot.style.transition = 'opacity 0.5s';
+                    setTimeout(() => {
+                        if (dot.parentElement) {
+                            document.body.removeChild(dot);
+                        }
+                        trail = trail.filter(d => d !== dot);
+                    }, 500);
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
